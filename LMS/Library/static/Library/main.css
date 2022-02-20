@@ -1,0 +1,30 @@
+
+:root {
+    --light-dark-bg: whitesmoke;
+    --light-bg: white;
+    --font-color: black;
+    --hovered-link-bg: rgb(204, 204, 204);
+    --header-height: 65px;
+}
+
+header {
+    background-color: var(--light-dark-bg);
+    height: var(--header-height);
+}
+
+header nav {
+    width: 35%;
+}
+
+a {
+    text-decoration: none;
+    color: var(--font-color);
+    padding: 1% 2%;
+    border-radius: 3px;
+    transition: .5s;
+}
+
+a:hover {
+    background-color: var(--hovered-link-bg);
+    color: var(--font-color);
+}

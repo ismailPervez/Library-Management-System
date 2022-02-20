@@ -5,11 +5,14 @@
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{# load custom static #}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Library/main.css' %}">
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
@@ -17,6 +20,15 @@
     {% endif %}
 </head>
 <body>
+    <header class="d-flex align-items-center justify-content-between px-4 py-3">
+        <h1 class="fs-4" id="logo-title">The Book Keeper</h1>
+        <nav class="d-flex align-items-center justify-content-between">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Login</a>
+            <a href="#">Sign Up</a>
+        </nav>
+    </header>
     {% block content %}
     {% endblock %}
 </body>

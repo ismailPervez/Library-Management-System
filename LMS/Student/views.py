@@ -2,4 +2,4 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse('<h1>Hello Student!</h1>')
+    return render(request, 'Student/dashboard.html', {'title': 'students dashboard page'})

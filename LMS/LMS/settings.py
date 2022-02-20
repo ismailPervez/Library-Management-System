@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Librarian.apps.LibrarianConfig',
     'Student.apps.StudentConfig',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

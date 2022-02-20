@@ -20,16 +20,20 @@
     {% endif %}
 </head>
 <body>
-    <header class="d-flex align-items-center justify-content-between px-4 py-3">
+    <header class="d-flex align-items-center justify-content-between px-4 py-3 fixed-top">
         <h1 class="fs-4" id="logo-title">The Book Keeper</h1>
         <nav class="d-flex align-items-center justify-content-between">
             <a href="#">Home</a>
             <a href="#">Explore</a>
             <a href="#">Login</a>
-            <a href="#">Sign Up</a>
+            <a href="{% url 'library-register' %}" class="link-btn">Sign Up</a>
         </nav>
     </header>
-    {% block content %}
-    {% endblock %}
+    <main class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% block scripts %}
+    {% endblock scripts %}
 </body>
 </html>

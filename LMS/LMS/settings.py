@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Library.apps.LibraryConfig',
     'Librarian.apps.LibrarianConfig',
     'Student.apps.StudentConfig',
     'bootstrap5',

@@ -73,5 +73,38 @@ main {
 
 .div-btn:hover {
     border: 1px solid black;
-    
+}
+
+.form-container {
+    display: grid;
+    place-items: center;
+}
+
+form {
+    background-color: var(--light-dark-bg);
+    border-radius: 5px;
+    height: 450px;
+}
+
+form > div {
+    width: 80%;
+}
+
+.btn-primary {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: black;
+    height: 35px;
+    transition: .5s;
+}
+
+.btn-primary:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+form small {
+    width: 80%;
 }

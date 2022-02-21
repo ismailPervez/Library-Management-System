@@ -27,7 +27,10 @@ def log_in(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             student_obj = Student.objects.get(email=email)
+            print(student_obj)
             if student_obj:
+                print(student_obj.password)
+                print(password)
                 if check_password(password, student_obj.password):
                     login(request, student_obj)
                     messages.success(request, 'login successfull')

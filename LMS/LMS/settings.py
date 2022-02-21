@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Librarian.apps.LibrarianConfig',
     'Student.apps.StudentConfig',
     'bootstrap5',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

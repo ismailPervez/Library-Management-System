@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 
 :root {
     --light-dark-bg: whitesmoke;
@@ -5,6 +6,12 @@
     --font-color: black;
     --hovered-link-bg: rgb(204, 204, 204);
     --header-height: 65px;
+    --roboto-slab: 'Roboto Slab', serif;
+    --btn-bg: rgb(30, 0, 202);
+}
+
+* {
+    font-family: var(--roboto-slab) !important;
 }
 
 header {
@@ -31,7 +38,9 @@ a {
     border-radius: 3px;
     transition: .5s;
     background-color: var(--hovered-link-bg);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 7px 10px;
+    background-color: var(--btn-bg);
+    color: white;
 }
 
 a:hover {
@@ -41,6 +50,8 @@ a:hover {
 
 .link-btn:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: var(--btn-bg);
+    color: white;
 }
 
 main {

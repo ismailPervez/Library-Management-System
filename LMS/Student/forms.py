@@ -33,11 +33,11 @@ class StudentRegistrationForm(ModelForm):
     #     'required': True
     # }))
 
-    # password = CharField(widget=PasswordInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'enter a strong password',
-    #     'required': True
-    # }))
+    password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'enter a strong password',
+        'required': True
+    }))
 
     confirm_password = CharField(widget=PasswordInput(attrs={
         'class': 'form-control',

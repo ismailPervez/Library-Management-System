@@ -109,22 +109,3 @@ form small {
     width: 80%;
 }
 
-.message {
-    height: 40px;
-    padding: 1% 4%;
-}
-
-.message-success {
-    background-color: green;
-    color: white;
-}
-
-.message-info {
-    background-color: yellow;
-    color: black;
-}
-
-.message-danger {
-    background-color: red;
-    color: white;
-}

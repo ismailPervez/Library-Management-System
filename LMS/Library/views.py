@@ -5,3 +5,6 @@ def index(request):
 
 def register(request):
     return render(request, 'Library/register.html')
+
+def login(request):
+    return render(request, 'Library/login.html')

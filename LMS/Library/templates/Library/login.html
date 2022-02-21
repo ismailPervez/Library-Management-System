@@ -1,0 +1,33 @@
+{% extends "Library/base.html" %}
+{% load static %}
+{% block content %}
+    <section>
+        <h2 class="text-center mb-3">Login as</h2>
+        <div class="d-flex align-items-center justify-content-around w-50 my-3 mx-auto">        
+            <div class="div-btn" data-link="student">
+                <h4>Student</h4>
+                <img src="{% static 'Library/images/student.png' %}" alt="">
+            </div>
+            <div class="div-btn" data-link="librarian">
+                <h4>Librarian</h4>
+                <img src="{% static 'Library/images/books.png' %}" alt="">
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+{% block scripts %}
+    <script type="text/javascript">
+        console.log('working...')
+        const divBtns = document.querySelectorAll('.div-btn')
+        divBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (e.target.dataset.link == 'student') {
+                    window.location.href = window.location.origin + '/student/login'
+                } 
+                else {
+                    window.location.href = window.location.origin + '/librarian/login'
+                }
+            })
+        })
+    </script>
+{% endblock scripts %}

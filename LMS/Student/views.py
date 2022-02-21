@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password, check_password
 from .models import Student
+from django.contrib.auth.decorators import login_required
 
+@login_required()
 def index(request):
     return render(request, 'Student/dashboard.html', {'title': 'students dashboard page'})
 

@@ -177,3 +177,7 @@ svg {
     outline: none;
     background-color: var(--hovered-link-bg);
 }
+
+#update-user-btn {
+    visibility: hidden;
+}

@@ -1,4 +1,8 @@
 {% extends "Library/base.html" %}
 {% block content %}
-    <h1>Hello Student!</h1>
+    {% if user %}
+        <h1>Hello {{ user }} {{user.first_name}} {{ user.last_name }}</h1>
+    {% else %}
+        <h1>Hello Student!</h1>
+    {% endif %}
 {% endblock %}

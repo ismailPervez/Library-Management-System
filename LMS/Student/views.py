@@ -13,21 +13,7 @@ def register(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
         if form.is_valid():
-            # form.save()
-            # print('New student registered')
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            student_ID = form.cleaned_data['student_ID']
-            password = make_password(form.cleaned_data['password'])
-            new_student = Student(
-                first_name=first_name,
-                last_name=last_name,
-                email=email,
-                student_ID=student_ID,
-                password=password
-            )
-            new_student.save()
+            form.save()
             messages.success(request, 'Registration successfull, you can now login')
     else:
         form = StudentRegistrationForm()

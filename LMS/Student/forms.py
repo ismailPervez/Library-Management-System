@@ -2,6 +2,13 @@ from django.forms import CharField, EmailInput, ModelForm, PasswordInput, TextIn
 from .models import Student
 
 class StudentRegistrationForm(ModelForm):
+
+    username = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g john_doe',
+        'required': True
+    }))
+
     first_name = CharField(widget=TextInput(attrs={
         'class': 'form-control',
         'placeholder': 'e.g John',
@@ -41,7 +48,7 @@ class StudentRegistrationForm(ModelForm):
 
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'student_ID', 'email', 'password', 'confirm_password']
+        fields = ['username', 'first_name', 'last_name', 'student_ID', 'email', 'password', 'confirm_password']
 
     def clean(self):
         cleaned_data = super(StudentRegistrationForm, self).clean()

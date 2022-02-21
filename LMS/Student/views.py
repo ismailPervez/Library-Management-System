@@ -1,6 +1,6 @@
 import django
 from django.shortcuts import render
-from .forms import StudentRegistrationForm
+from .forms import StudentLoginForm, StudentRegistrationForm
 from django.contrib import messages
 
 def index(request):
@@ -17,3 +17,7 @@ def register(request):
         form = StudentRegistrationForm()
 
     return render(request, 'Student/register.html', {'form': form})
+
+def log_in(request):
+    form = StudentLoginForm()
+    return render(request, 'Student/login.html', {'form': form})

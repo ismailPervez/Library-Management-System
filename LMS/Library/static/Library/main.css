@@ -83,7 +83,8 @@ main {
 form {
     background-color: var(--light-dark-bg);
     border-radius: 5px;
-    height: 450px;
+    min-height: 450px;
+    height: fit-content;
 }
 
 form > div {
@@ -109,3 +110,11 @@ form small {
     width: 80%;
 }
 
+.errorlist {
+    list-style: none;
+}
+
+.errorlist li {
+    color: red;
+    font-weight: bold;
+}

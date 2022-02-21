@@ -1,27 +1,67 @@
-from django.forms import CharField, EmailInput, ModelForm, TextInput
+from django.forms import CharField, EmailInput, ModelForm, PasswordInput, TextInput, Form
 from .models import Student
 
 class StudentRegistrationForm(ModelForm):
     first_name = CharField(widget=TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'e.g John'
+        'placeholder': 'e.g John',
+        'required': True
     }))
 
     last_name = CharField(widget=TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'e.g Doe'
+        'placeholder': 'e.g Doe',
+        'required': True
     }))
 
     student_ID = CharField(widget=TextInput(attrs={
         'class': 'form-control',
-        'placeholder': 'e.g 1673827'
+        'placeholder': 'e.g 1673827',
+        'required': True
     }))
 
     email = CharField(widget=EmailInput(attrs={
         'class': 'form-control',
-        'placeholder': 'e.g johndoe@gmail.com'
+        'placeholder': 'e.g johndoe@gmail.com',
+        'required': True
+    }))
+
+    password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'enter a strong password',
+        'required': True
+    }))
+
+    confirm_password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'confirm your password',
+        'label': 'confirm password',
+        'required': True
     }))
 
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'student_ID', 'email']
+        fields = ['first_name', 'last_name', 'student_ID', 'email', 'password', 'confirm_password']
+
+    def clean(self):
+        cleaned_data = super(StudentRegistrationForm, self).clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password != confirm_password:
+            self.add_error('confirm_password', 'passwords do not match')
+
+        return cleaned_data
+
+class StudentLoginForm(Form):
+    email = CharField(widget=EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g johndoe@gmail.com',
+        'required': True
+    }))
+
+    password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'enter a strong password',
+        'required': True
+    }))

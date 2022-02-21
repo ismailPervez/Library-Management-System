@@ -133,8 +133,9 @@ form small {
 .dash-container {
     display: grid;
     grid-template-columns: 40% 60%;
-    width: 85%;
+    width: 87%;
     margin: 1% auto;
+    gap: 15px;
 }
 
 .user-profile {

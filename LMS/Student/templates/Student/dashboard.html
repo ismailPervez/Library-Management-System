@@ -31,6 +31,28 @@
 {% endblock content %}
 {% block scripts %}
     <script type="text/javascript">
-        
+        console.log('working...')
+        const editBtns = document.querySelectorAll('.pencil')
+        console.log(editBtns)
+        editBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let parent = e.target.parentElement
+                if (e.target.nodeName === 'path') {
+                    parent = e.target.parentElement.parentElement
+                }
+                const field = parent.querySelector('span')
+                field.setAttribute('contenteditable', 'true')
+                field.focus()
+            })
+        });
+
+        editableFields = document.querySelectorAll('p span')
+        editableFields.forEach(field => {
+            console.log(field)
+            field.onblur = () => {
+                    console.log('leaving focus...')
+                    field.setAttribute('contenteditable', 'false')
+                }
+        })
     </script>
 {% endblock scripts %}

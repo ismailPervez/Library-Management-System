@@ -6,14 +6,20 @@ from django.contrib.auth import login
 from django.contrib.auth.hashers import make_password, check_password
 from .models import Student
 from django.contrib.auth.decorators import login_required
-from Library.models import TakenBook
+from Library.models import TakenBook, WishList
 
 @login_required()
 def index(request):
+    user = request.user
+    student = Student.objects.filter(username=user.username).first()
+    if student is None:
+        return redirect('librarian-home')
     taken_books = TakenBook.objects.filter(student=request.user).all()
+    wishlist = WishList.objects.filter(student=request.user).all()
     context = {
         'title': 'students dashboard page',
-        'taken_books': taken_books
+        'taken_books': taken_books,
+        'wishlist': wishlist
     }
     return render(request, 'Student/dashboard.html', context)
 

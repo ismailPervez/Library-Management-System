@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required()
 def index(request):
+    librarian = Librarian.objects.filter(username=request.user.username).first()
+    if librarian is None:
+        return redirect('student-home')
     return render(request, 'Librarian/dashboard.html', {'title': 'Librarian Home Page'})
 
 def register(request):

@@ -8,7 +8,16 @@
     </div>
     <div class="books">
         {% for book in books %}
-            <h1>{{ book.title }}</h1>
+            <div class="card">
+                <div class="card-img"></div>
+                <div class="card-body">
+                    <h4 class="mb-1">{{ book.title }}</h4>
+                    <small>{{ book.desc }}</small>
+                </div>
+                <div class="card-end px-3 pb-2">
+                    <span class="badge badge-success">{{ book.in_store }} available</span>
+                </div>
+            </div>
         {% endfor %}
     </div>
 {% endblock content %}

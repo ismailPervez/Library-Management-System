@@ -210,3 +210,14 @@ svg {
     height: 300px;
     border-radius: 5px;
 }
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.badge-success {
+    color: white;
+    background-color: rgb(4, 163, 4);
+}

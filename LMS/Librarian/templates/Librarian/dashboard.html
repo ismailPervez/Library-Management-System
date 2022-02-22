@@ -28,40 +28,54 @@
             </div>
         </div>
         <div class="management">
+            <div class="simple-analytics">
+                <div class="d-flex flex-column align-items-center justify-content-center p-4">
+                    <h2>130</h2>
+                    <h4>Books</h4>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center p-4">
+                    <h2>27</h2>
+                    <h4>Out</h4>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center p-4">
+                    <h2>130</h2>
+                    <h4>Books</h4>
+                </div>
+            </div>
             <div class="accordion" id="accordionPanelsStayOpenExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                      Currently borrowed books
+                      Add a new Book
                     </button>
                   </h2>
                   <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
-                      <ul>
-                          <li>Python for beginners</li>
-                          <li>Database management with Access</li>
-                          <li>Javascript for beginners</li>
-                          <li>PHP for dummies</li>
-                          <li>Lravel framework</li>
-                      </ul>
+                      <form>
+                          <h3>Enter The Book Details</h3>
+                          <input type="text" class="form-control mb-3" placeholder="book title"/>
+                          <input type="text" class="form-control mb-3" placeholder="book title"/>
+                          <input type="text" class="form-control mb-3" placeholder="book title"/>
+                          <button class="btn-primary">add book +</button>
+                      </form>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                      Reading List
+                      Register A Taken Book
                     </button>
                   </h2>
                   <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
-                        <ul>
-                            <li>Python for beginners</li>
-                            <li>Database management with Access</li>
-                            <li>Javascript for beginners</li>
-                            <li>PHP for dummies</li>
-                            <li>Lravel framework</li>
-                        </ul>
+                        <form>
+                            <h3>Enter Details</h3>
+                            <input type="text" class="form-control mb-3" placeholder="book title"/>
+                            <input type="text" class="form-control mb-3" placeholder="student ID"/>
+                            <input type="datetime" class="form-control mb-3" placeholder="return date"/>
+                            <button class="btn-primary">register</button>
+                        </form>
                     </div>
                   </div>
                 </div>

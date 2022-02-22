@@ -91,7 +91,7 @@ main {
     place-items: center;
 }
 
-form {
+.form-container > form {
     background-color: var(--light-dark-bg);
     border-radius: 5px;
     min-height: 450px;
@@ -181,4 +181,16 @@ svg {
 
 #update-user-btn {
     visibility: hidden;
+}
+
+.simple-analytics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 3%;
+}
+
+.simple-analytics > div {
+    border-top: 2px solid rgb(0, 89, 255);
+    background-color: #CCE5FF;
 }

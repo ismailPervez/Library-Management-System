@@ -2,7 +2,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from Librarian.models import Librarian
-from Library.models import Book
+from Library.models import Book, TakenBook
+from Student.models import Student
 
 @api_view(['PUT'])
 def update_user(request, email):
@@ -34,7 +35,7 @@ def update_user(request, email):
 def add_book(request):
     if request.method == 'POST':
         if not request.data:
-            return Response({'msg': 'not data found'}, status=status.HTTP_404_NOT_FOUND) 
+            return Response({'msg': 'data not found'}, status=status.HTTP_404_NOT_FOUND) 
 
         new_book = Book(
             title=request.data['title'],
@@ -45,5 +46,42 @@ def add_book(request):
         
         return Response({'msg': 'new book has been added to the library'}, status=status.HTTP_201_CREATED)
 
+    else:
+        return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(['POST'])
+def  register_taken_book(request):
+    if request.method == 'POST':
+        data = request.data
+        if not data:
+            return Response({'msg': 'data not found'}, status=status.HTTP_404_NOT_FOUND) 
+
+        else:
+            book_title = request.data['book_title']
+            student_username = request.data['student_username']
+            date_to_return = request.data['date_to_return']
+
+            book = Book.objects.filter(title=book_title).first()
+            student = Student.objects.filter(username=student_username).first()
+
+            if book is None:
+                return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)  
+
+            elif student is None:
+                return Response({'msg': 'student not found'}, status=status.HTTP_404_NOT_FOUND) 
+            
+            else:
+                new_taken_book = TakenBook(
+                    book=book,
+                    student=student,
+                    date_to_be_returned=date_to_return
+                )
+
+                new_taken_book.save()
+
+                return Response({'msg': f"added book to {student_username}'s borrowed list"}, status=status.HTTP_200_OK) 
+
+                # send an email to student - notification
+        
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

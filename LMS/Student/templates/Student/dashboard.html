@@ -38,11 +38,9 @@
                   <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                       <ul>
-                          <li>Python for beginners</li>
-                          <li>Database management with Access</li>
-                          <li>Javascript for beginners</li>
-                          <li>PHP for dummies</li>
-                          <li>Lravel framework</li>
+                          {% for taken_book in taken_books %}
+                            <li>{{ taken_book.book.title }}</li>
+                          {% endfor %}
                       </ul>
                     </div>
                   </div>

@@ -69,12 +69,12 @@
                   </h2>
                   <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
-                        <form>
+                        <form id="taken-book-form">
                             <h3>Enter Details</h3>
                             <input type="text" class="form-control mb-3" placeholder="book title"/>
                             <input type="text" class="form-control mb-3" placeholder="student ID"/>
                             <input type="date" class="form-control mb-3" placeholder="return date"/>
-                            <button class="btn-primary">register</button>
+                            <button class="btn-primary" id="taken-book-btn">register</button>
                         </form>
                     </div>
                   </div>
@@ -183,5 +183,33 @@
         })
 
         // add borrowed book to student functionality
+        const registerTakenBookBtn = document.getElementById('taken-book-btn')
+        registerTakenBookBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            const bookTitle = document.querySelector('#taken-book-form input[placeholder="book title"]').value
+            const studentID = document.querySelector('#taken-book-form input[placeholder="student ID"]').value
+            const dateToReturn = document.querySelector('#taken-book-form input[placeholder="return date"]').value
+            
+            if (bookTitle && studentID && dateToReturn) {
+                const content = {
+                    book_title: bookTitle,
+                    student_id: studentID,
+                    date_to_return: dateToReturn
+                }
+
+                // make a request to api
+                fetch(`/librarian/register-taken-book`, {
+                    headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
+                    method: 'POST',
+                    body: JSON.stringify(content)
+                }).then(res => res.json()).then(data => {
+                    alert(data.msg)
+                })
+            }
+
+            else {
+                alert('all fields are required!')
+            }
+        })
     </script>
 {% endblock scripts %}

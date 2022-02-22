@@ -4,6 +4,8 @@ from rest_framework import status
 from Librarian.models import Librarian
 from Library.models import Book, TakenBook
 from Student.models import Student
+from django.utils.dateparse import parse_date
+import pytz
 
 @api_view(['PUT'])
 def update_user(request, email):
@@ -58,11 +60,11 @@ def  register_taken_book(request):
 
         else:
             book_title = request.data['book_title']
-            student_username = request.data['student_username']
+            student_id = request.data['student_id']
             date_to_return = request.data['date_to_return']
 
             book = Book.objects.filter(title=book_title).first()
-            student = Student.objects.filter(username=student_username).first()
+            student = Student.objects.filter(student_ID=student_id).first()
 
             if book is None:
                 return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)  
@@ -77,9 +79,18 @@ def  register_taken_book(request):
                     date_to_be_returned=date_to_return
                 )
 
+                # print(date_to_return)
+                # print(type(date_to_return))
+
+                # print('---------------------')
+
+                # print(parse_date(date_to_return))
+                # print(type(parse_date(date_to_return)))
+                # print(pytz.utc.localize(parse_date(date_to_return)))
+
                 new_taken_book.save()
 
-                return Response({'msg': f"added book to {student_username}'s borrowed list"}, status=status.HTTP_200_OK) 
+                return Response({'msg': f"added book to {student.username}'s borrowed list"}, status=status.HTTP_200_OK) 
 
                 # send an email to student - notification
         

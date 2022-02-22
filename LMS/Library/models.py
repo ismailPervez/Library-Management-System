@@ -8,7 +8,7 @@ class Book(models.Model):
     in_store = models.IntegerField()
 
 class BaseUser(AbstractUser):
-    is_staff = models.BooleanField(default=False)
+    pass
 
 # Due to circular imports
 from Student.models import Student
@@ -18,4 +18,4 @@ class TakenBook(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date_taken = models.DateTimeField(default=timezone.now)
     date_to_be_returned = models.DateTimeField()
-    date_returned = models.DateTimeField()
+    date_returned = models.DateTimeField(null=True)

@@ -31,7 +31,6 @@ def log_in(request):
             student_obj = Student.objects.get(email=email)
             print(student_obj)
             if student_obj:
-                print(student_obj.password)
                 print(password)
                 if check_password(password, student_obj.password):
                     login(request, student_obj)

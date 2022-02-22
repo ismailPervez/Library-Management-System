@@ -4,7 +4,9 @@ from .models import Librarian
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
+@login_required()
 def index(request):
     return render(request, 'Librarian/dashboard.html', {'title': 'Librarian Home Page'})
 
@@ -28,7 +30,6 @@ def log_in(request):
             librarian_obj = Librarian.objects.get(email=email)
             print(librarian_obj)
             if librarian_obj:
-                print(librarian_obj.password)
                 print(password)
                 if check_password(password, librarian_obj.password):
                     login(request, librarian_obj)

@@ -54,3 +54,29 @@ def add_to_wishlist(request, book_id):
 
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(['DELETE'])
+def remove_wishlist(request, book_id):
+    if request.method == 'DELETE':
+        book = Book.objects.get(pk=book_id)
+
+        if book is None:
+            return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        else:
+            if not request.user:
+                return Response({'msg': 'you need to be logged in'}, status=status.HTTP_401_UNAUTHORIZED)
+
+            else:
+                student = Student.objects.filter(username=request.user.username).first()
+                if student:
+                    wishlist = WishList.objects.filter(book=book, student=student)
+                    wishlist.delete()
+
+                else:
+                    return Response({'msg': 'not a valid user'}, status=status.HTTP_401_UNAUTHORIZED)
+
+                return Response({'msg': 'book removed from wishlist!'}, status=status.HTTP_200_OK)
+    
+    else:
+        return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

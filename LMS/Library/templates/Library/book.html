@@ -1,4 +1,49 @@
 {% extends "Library/base.html" %}
 {% block content %}
     <h1>{{ book.title }}</h1>
+    <p>{{ book.desc }}</p>
+    {% if in_wishlist %}
+        <button class="btn btn-outline-danger" id="remove-wishlist">
+            remove from wish List
+        </button>
+    {% else %}
+        <button class="btn-primary" id="add-wishlist">
+            add to wish List
+        </button>
+    {% endif %}
 {% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+    const in_wishlist = '{{ in_wishlist }}'
+    const bookID = parseInt('{{ book.pk }}')
+    console.log(bookID)
+    // console.log(in_wishlist)
+    if (in_wishlist === 'True') {
+        const removeFromWishlistBtn = document.querySelector('button')
+        console.log(removeFromWishlistBtn)
+        removeFromWishlistBtn.addEventListener('click', (e) => {
+            console.log('removing from wishlist...')
+            fetch(`new/wishlist/${bookID}`, {
+                headers: {'X-Csrftoken': '{{ csrf_token }}'},
+            }).then(res => res.json()).then(data => {
+                alert(data.msg)
+            })
+        })
+    }
+    else {
+        const addWishlistBtn = document.querySelector('button')
+        console.log(addWishlistBtn)
+        const URI = window.location.origin + `/student/new/wishlist/${bookID}`
+        console.log(URI)
+        addWishlistBtn.addEventListener('click', (e) => {
+            console.log('adding to wishlist...')
+            fetch(URI, {
+                headers: {'X-Csrftoken': '{{ csrf_token }}'},
+                method: 'POST'
+            }).then(res => res.json()).then(data => {
+                alert(data.msg)
+            })
+        })
+    }
+</script>
+{% endblock scripts %}

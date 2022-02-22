@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Book
+from .models import Book, WishList
 
 def index(request):
     return render(request, 'Library/index.html')
@@ -16,5 +16,14 @@ def explore(request):
 
 def get_book(request, book_id):
     book = Book.objects.get(pk=book_id)
+
     if book:
-        return render(request, 'Library/book.html', {'book': book})
+        if request.user:
+            in_wishlist = WishList.objects.filter(book=book, student=request.user).first()
+            if in_wishlist is not None:
+                return render(request, 'Library/book.html', {'book': book, 'in_wishlist': True})
+            
+            else:
+                return render(request, 'Library/book.html', {'book': book, 'in_wishlist': False})
+        else:
+            return render(request, 'Library/book.html', {'book': book})

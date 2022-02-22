@@ -194,3 +194,8 @@ svg {
     border-top: 2px solid rgb(0, 89, 255);
     background-color: #CCE5FF;
 }
+
+#new-book-form textarea {
+    height: 120px;
+    resize: none;
+}

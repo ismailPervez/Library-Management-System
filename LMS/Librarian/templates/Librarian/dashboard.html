@@ -51,12 +51,12 @@
                   </h2>
                   <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
-                      <form>
+                      <form id="new-book-form">
                           <h3>Enter The Book Details</h3>
                           <input type="text" class="form-control mb-3" placeholder="book title"/>
-                          <input type="text" class="form-control mb-3" placeholder="book title"/>
-                          <input type="text" class="form-control mb-3" placeholder="book title"/>
-                          <button class="btn-primary">add book +</button>
+                          <textarea type="text" class="form-control mb-3" placeholder="book description"></textarea>
+                          <input type="number" class="form-control mb-3" placeholder="amount in stock"/>
+                          <button class="btn-primary" id="add-book-btn">add book +</button>
                       </form>
                     </div>
                   </div>
@@ -73,7 +73,7 @@
                             <h3>Enter Details</h3>
                             <input type="text" class="form-control mb-3" placeholder="book title"/>
                             <input type="text" class="form-control mb-3" placeholder="student ID"/>
-                            <input type="datetime" class="form-control mb-3" placeholder="return date"/>
+                            <input type="date" class="form-control mb-3" placeholder="return date"/>
                             <button class="btn-primary">register</button>
                         </form>
                     </div>
@@ -138,18 +138,48 @@
                 'last_name': lastName,
                 'email': email
             }
-            // console.log(content)
             // send update request to server
-            // fetch(`/student/update/{{ user.email }}`, {
-            //     headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
-            //     method: 'PUT',
-            //     body: JSON.stringify(content)
-            // })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         console.log(data)
-            //     })
-            // console.log('/update/user/{{ user.username }}')
+            fetch(`/librarian/update/{{ user.email }}`, {
+                headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
+                method: 'PUT',
+                body: JSON.stringify(content)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    alert(data.msg)
+                })
+        })
+
+        // add a new book functionality
+        const addBookBtn = document.getElementById('add-book-btn')
+        addBookBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            const bookTitle = document.querySelector('input[placeholder="book title"]').value
+            const bookDesc = document.querySelector('textarea[placeholder="book description"]').value
+            const bookInStoreCount = document.querySelector('input[placeholder="amount in stock"]').value
+
+            if (bookTitle && bookDesc && bookInStoreCount) {
+                const content = {
+                    title: bookTitle,
+                    desc: bookDesc,
+                    in_store: bookInStoreCount
+                }
+
+                // send a request to add the book 
+                fetch(`/librarian/add-book`, {
+                    headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
+                    method: 'POST',
+                    body: JSON.stringify(content)
+                }).then(res => res.json()).then(data => {
+                    console.log(data)
+                    alert(data.msg)
+                })
+            }  
+            
+            else {
+                alert('all fields are required')
+            }
         })
     </script>
 {% endblock scripts %}

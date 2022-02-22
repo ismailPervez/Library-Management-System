@@ -84,6 +84,7 @@
                   </div>
                 </div>
               </div>
+              <p class="text-muted text-center mt-2">copyrights &copy; The Book Keeper 2022</p>
         </div>
     </div>
 {% endblock content %}
@@ -133,6 +134,7 @@
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    alert(data.msg)
                 })
             // console.log('/update/user/{{ user.username }}')
         })

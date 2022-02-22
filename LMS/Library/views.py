@@ -13,3 +13,8 @@ def login(request):
 def explore(request):
     books = Book.objects.all()
     return render(request, 'Library/explore.html', {'books': books})
+
+def get_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    if book:
+        return render(request, 'Library/book.html', {'book': book})

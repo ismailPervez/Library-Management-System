@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-img"></div>
                 <div class="card-body">
-                    <h4 class="mb-1">{{ book.title }}</h4>
+                    <h4 class="mb-1"><a href="{% url 'full-book' book_id=book.pk %}">{{ book.title }}</a></h4>
                     <small>{{ book.desc }}</small>
                 </div>
                 <div class="card-end px-3 pb-2">

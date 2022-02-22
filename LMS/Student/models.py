@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from Library.models import BaseUser
 
-class Student(AbstractUser):
+class Student(BaseUser):
     student_ID = models.CharField(max_length=30)

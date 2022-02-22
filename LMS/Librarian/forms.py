@@ -1,7 +1,50 @@
-from django.forms import forms
+from django.forms import ModelForm, CharField, PasswordInput, TextInput, EmailInput
 from .models import Librarian
 
-class LibrarianRegistrationForm(forms.Form):
+class LibrarianRegistrationForm(ModelForm):  
+    username = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g john_doe',
+        'required': True
+    }))
+
+    first_name = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g John',
+        'required': True
+    }))
+
+    last_name = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g Doe',
+        'required': True
+    }))
+
+    staff_ID = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g 1673827',
+        'required': True
+    }))
+
+    email = CharField(widget=EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g johndoe@gmail.com',
+        'required': True
+    }))
+
+    password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'enter a strong password',
+        'required': True
+    }))
+
+    confirm_password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'confirm your password',
+        'label': 'confirm password',
+        'required': True
+    }))
+
     class Meta:
         model = Librarian
         fields = ['username', 'first_name', 'last_name', 'staff_ID', 'email', 'password', 'confirm_password']

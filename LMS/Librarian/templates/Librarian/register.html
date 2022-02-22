@@ -1,4 +1,14 @@
 {% extends "Library/base.html" %}
 {% block content %}
-    <h1>A Librarian's register!</h1>
-{% endblock content %}
+    <div class="form-container">
+        <form method="POST" class="d-flex flex-column align-items-center w-50 px-3 py-4">
+            {% csrf_token %}
+            <h2 class="text-center mb-3">Register Here</h2>
+            {{ form }}
+            <div class="my-3">
+                <button type="submit" class="btn-primary">submit</button>
+            </div>
+            <small>Already have an account? <a href="#">login here</a></small>
+        </form>
+    </div>
+{% endblock %}

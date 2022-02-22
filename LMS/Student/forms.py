@@ -3,35 +3,35 @@ from .models import Student
 
 class StudentRegistrationForm(ModelForm):
 
-    # username = CharField(widget=TextInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'e.g john_doe',
-    #     'required': True
-    # }))
+    username = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g john_doe',
+        'required': True
+    }))
 
-    # first_name = CharField(widget=TextInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'e.g John',
-    #     'required': True
-    # }))
+    first_name = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g John',
+        'required': True
+    }))
 
-    # last_name = CharField(widget=TextInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'e.g Doe',
-    #     'required': True
-    # }))
+    last_name = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g Doe',
+        'required': True
+    }))
 
-    # student_ID = CharField(widget=TextInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'e.g 1673827',
-    #     'required': True
-    # }))
+    student_ID = CharField(widget=TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g 1673827',
+        'required': True
+    }))
 
-    # email = CharField(widget=EmailInput(attrs={
-    #     'class': 'form-control',
-    #     'placeholder': 'e.g johndoe@gmail.com',
-    #     'required': True
-    # }))
+    email = CharField(widget=EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g johndoe@gmail.com',
+        'required': True
+    }))
 
     password = CharField(widget=PasswordInput(attrs={
         'class': 'form-control',

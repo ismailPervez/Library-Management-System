@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField, PasswordInput, TextInput, EmailInput
+from django.forms import ModelForm, CharField, PasswordInput, TextInput, EmailInput, Form
 from .models import Librarian
 
 class LibrarianRegistrationForm(ModelForm):  
@@ -66,3 +66,16 @@ class LibrarianRegistrationForm(ModelForm):
             self.add_error('confirm_password', 'passwords do not match')
 
         return cleaned_data
+
+class LibrarianLoginForm(Form):
+    email = CharField(widget=EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'e.g johndoe@gmail.com',
+        'required': True
+    }))
+
+    password = CharField(widget=PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'enter a strong password',
+        'required': True
+    }))

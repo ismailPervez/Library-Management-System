@@ -96,3 +96,34 @@ def  register_taken_book(request):
         
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(['POST'])
+def clear_returned_book(request):
+    if request.method == 'POST':
+        data = request.data
+        if not data:
+            return Response({'msg': 'data not found'}, status=status.HTTP_404_NOT_FOUND) 
+        
+        else:
+            student_ID = data['student_id']
+            book_title = data['book_title']
+            student = Student.objects.filter(student_ID=student_ID).first()
+            book = Book.objects.filter(title=book_title).first()
+
+            if not student:
+                return Response({'msg': 'student not found'}, status=status.HTTP_404_NOT_FOUND)
+
+            elif not book:
+                return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)
+
+            taken_book = TakenBook.objects.filter(student=student, book=book).first()
+
+            if not taken_book:
+                return Response({'msg': 'borrowed book with that query not found'}, status=status.HTTP_404_NOT_FOUND) 
+
+            else:
+                taken_book.delete()
+                return Response({'msg': f"cleared book from {student.username}'s borrowed list"}, status=status.HTTP_200_OK) 
+
+    else:
+        return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from Student.models import Student
 from Library.models import Book, WishList
+from .serializers import WishlistSerializer
 
 @api_view(['PUT'])
 def update_student(request, email):
@@ -73,10 +74,13 @@ def remove_wishlist(request, book_id):
                     wishlist = WishList.objects.filter(book=book, student=student)
                     wishlist.delete()
 
+                    wishlist_books = WishList.objects.filter(student=student).all()
+                    JSON_wishlist = WishlistSerializer(wishlist_books, many=True)
+
                 else:
                     return Response({'msg': 'not a valid user'}, status=status.HTTP_401_UNAUTHORIZED)
 
-                return Response({'msg': 'book removed from wishlist!'}, status=status.HTTP_200_OK)
+                return Response({'msg': 'book removed from wishlist!', 'wishlist': JSON_wishlist.data}, status=status.HTTP_200_OK)
     
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

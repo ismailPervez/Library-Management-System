@@ -8,4 +8,5 @@ urlpatterns = [
     path('login/', views.log_in, name='student-login'),
     path('update/<email>', api_views.update_student),
     path('new/wishlist/<book_id>', api_views.add_to_wishlist),
+    path('remove/wishlist/<book_id>', api_views.remove_wishlist),
 ]

@@ -8,6 +8,7 @@
     --header-height: 65px;
     --roboto-slab: 'Roboto Slab', serif;
     --btn-bg: rgb(30, 0, 202);
+    --maroon: #C90C50;
 }
 
 * {
@@ -111,10 +112,25 @@ form > div {
     transition: .5s;
 }
 
+.btn-danger {
+    background-color: transparent;
+    border: 1px solid var(--maroon);
+    border-radius: 4px;
+    color: var(--maroon);
+    height: 35px;
+    transition: .5s;
+}
+
 .btn-primary:hover {
     background-color: black;
     color: white;
     border: 1px solid black;
+}
+
+.btn-danger:hover {
+    background-color: var(--maroon);
+    color: white;
+    border: 1px solid var(--maroon);
 }
 
 form small {
@@ -236,4 +252,55 @@ svg {
     outline: none;
     flex: 1;
     border: none;
+}
+
+.intro, .contact-us {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 500px;
+}
+
+.intro .caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro .caption h1 {
+    font-weight: bold;
+    font-size: 65px;
+}
+
+.img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.img img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+section.users {
+    background-color: var(--light-dark-bg);
+}
+
+.contacts ul li {
+    padding: 2% 3%;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.contacts ul li svg {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-us ul li:hover {
+    background-color: var(--maroon);
+    color: white;
 }

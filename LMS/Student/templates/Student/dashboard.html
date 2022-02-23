@@ -61,7 +61,7 @@
                           {% for book in wishlist %}
                             <li class="card px-3 py-2 mb-2" data-bookid="{{ book.book.pk }}">
                               <p class="mb-2">{{ book.book.title }}</p>
-                              <button class="remove-btn btn btn-outline-danger btn-sm w-25">remove</button>
+                              <button class="remove-btn btn-danger btn-sm w-25">remove</button>
                             </li>
                           {% endfor %}
                         </ul>

@@ -2,6 +2,7 @@
 {% block content %}
     <h1>{{ book.title }}</h1>
     <p>{{ book.desc }}</p>
+    <div class="btn-container"></div>
     {% if in_wishlist %}
         <button class="btn btn-outline-danger" id="remove-wishlist">
             remove from wish List
@@ -16,34 +17,55 @@
 <script type="text/javascript">
     const in_wishlist = '{{ in_wishlist }}'
     const bookID = parseInt('{{ book.pk }}')
-    console.log(bookID)
-    // console.log(in_wishlist)
+    const btnContainer = document.querySelector('.btn-container')
+
+    function addToWishlist() {
+        console.log('adding to wishlist...')
+        const URI = window.location.origin + `/student/new/wishlist/${bookID}`
+        fetch(URI, {
+            headers: {'X-Csrftoken': '{{ csrf_token }}'},
+            method: 'POST'
+        }).then(res => res.json()).then(data => {
+            // addWishlistBtn.remove()
+            document.querySelector('button').remove()
+            btnContainer.innerHTML = (
+                `
+                <button class="btn btn-outline-danger" id="remove-wishlist" onclick="removeFromWishlist()">
+                    remove from wish List
+                </button>
+                `
+            )
+            alert(data.msg)
+        })
+    }
+
+    function removeFromWishlist() {
+        console.log('removing from wishlist...')
+        fetch(`/student/remove/wishlist/${bookID}`, {
+            headers: {'X-Csrftoken': '{{ csrf_token }}'},
+            method: 'DELETE'
+        }).then(res => res.json()).then(data => {
+            // removeFromWishlistBtn.remove()
+            document.querySelector('button').remove()
+            btnContainer.innerHTML = (
+                `
+                <button class="btn-primary" id="add-wishlist" onclick="addToWishlist()">
+                    add to wish List
+                </button>
+                `
+            )
+            alert(data.msg)
+        })
+    }
+
     if (in_wishlist === 'True') {
         const removeFromWishlistBtn = document.querySelector('button')
         console.log(removeFromWishlistBtn)
-        removeFromWishlistBtn.addEventListener('click', (e) => {
-            console.log('removing from wishlist...')
-            fetch(`new/wishlist/${bookID}`, {
-                headers: {'X-Csrftoken': '{{ csrf_token }}'},
-            }).then(res => res.json()).then(data => {
-                alert(data.msg)
-            })
-        })
+        removeFromWishlistBtn.addEventListener('click', removeFromWishlist)
     }
     else {
         const addWishlistBtn = document.querySelector('button')
-        console.log(addWishlistBtn)
-        const URI = window.location.origin + `/student/new/wishlist/${bookID}`
-        console.log(URI)
-        addWishlistBtn.addEventListener('click', (e) => {
-            console.log('adding to wishlist...')
-            fetch(URI, {
-                headers: {'X-Csrftoken': '{{ csrf_token }}'},
-                method: 'POST'
-            }).then(res => res.json()).then(data => {
-                alert(data.msg)
-            })
-        })
+        addWishlistBtn.addEventListener('click', addToWishlist)
     }
 </script>
 {% endblock scripts %}

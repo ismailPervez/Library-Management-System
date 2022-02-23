@@ -45,13 +45,29 @@
         <div class="d-flex align-items-center justify-content-center mt-3">
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} w-50">{{ message }}</div>
+                    <div class="alert alert-{{ message.tags }} w-50 alert-dismissible fade show d-flex align-items-center justify-content-between">
+                        <p style="flex: 1;" class="mb-0">{{ message }}</p>
+                        <button type="button" class="close btn" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 {% endfor %}
             {% endif %}
         </div>
         {% block content %}
         {% endblock %}
     </main>
+    <script>
+        const openAlerts = document.querySelectorAll('.alert')
+        if (openAlerts) {
+            openAlerts.forEach(alert => {
+                let closeBtn = alert.querySelector('button')
+                closeBtn.addEventListener('click', (e) => {
+                    alert.remove()
+                })
+            })
+        }
+    </script>
     {% block scripts %}
     {% endblock scripts %}
 </body>

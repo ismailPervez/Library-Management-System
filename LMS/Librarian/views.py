@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from Library.models import TakenBook, Book
 from .forms import LibrarianRegistrationForm, LibrarianLoginForm
 from .models import Librarian
 from django.contrib import messages
-from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +12,16 @@ def index(request):
     librarian = Librarian.objects.filter(username=request.user.username).first()
     if librarian is None:
         return redirect('student-home')
-    return render(request, 'Librarian/dashboard.html', {'title': 'Librarian Home Page'})
+    book_count = sum([book.in_store for book in Book.objects.all()])
+    out_count = len(TakenBook.objects.all())
+    in_count = book_count - out_count
+    context = {
+        'title': 'Librarian Home Page',
+        'book_count': book_count,
+        'out_count': out_count,
+        'in_count': in_count
+    }
+    return render(request, 'Librarian/dashboard.html', context)
 
 def register(request):
     if request.method == 'POST':

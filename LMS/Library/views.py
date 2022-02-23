@@ -27,3 +27,9 @@ def get_book(request, book_id):
                 return render(request, 'Library/book.html', {'book': book, 'in_wishlist': False})
         else:
             return render(request, 'Library/book.html', {'book': book})
+
+def search(request, query):
+    books = Book.objects.all()
+    results = [book for book in books if query in book.title]
+    return render(request, 'Library/results.html', {'books': results, 'query': query})
+    

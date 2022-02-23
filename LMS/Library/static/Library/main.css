@@ -99,7 +99,8 @@ main {
 
 .form-container {
     display: grid;
-    place-items: center;
+    grid-template-columns: 45% 65%;
+    height: 450px;
 }
 
 .form-container > form {

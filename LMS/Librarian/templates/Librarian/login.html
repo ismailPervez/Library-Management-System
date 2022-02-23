@@ -1,6 +1,10 @@
 {% extends "Library/base.html" %}
+{% load static %}
 {% block content %}
-    <div class="form-container">
+    <div class="form-container my-5 mx-auto">
+        <div class="img">
+            <img src="{% static 'Library/images/confirmed.svg' %}" alt="authentication">
+        </div>
         <form method="POST" class="d-flex flex-column align-items-center w-50 px-3 py-4">
             {% csrf_token %}
             <h2 class="text-center mb-3">Login To Your Account</h2>
@@ -17,7 +21,7 @@
             <div class="my-3">
                 <button type="submit" class="btn-primary">login</button>
             </div>
-            <small>Already have an account? <a href="#">login here</a></small>
+            <small>Already have an account? <a href="{% url 'librarian-login' %}">login here</a></small>
         </form>
     </div>
 {% endblock %}

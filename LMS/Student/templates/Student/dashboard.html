@@ -7,7 +7,7 @@
             </div>
             <div class="px-4 pb-2 pt-4" id="details">
                 <p>
-                  <b class="me-1">Student ID:</b><span class="me-5 px-2" id="email-field">{{ student_id }} (not editable)</span>
+                  <b class="me-1">Student ID:</b><small class="me-5 px-2 d-inline" id="email-field">{{ student_id }} (not editable)</small>
                 </p>
                 <p>
                     <b class="me-1">Username:</b> <span class="me-5 px-2" id="username-field">{{ user.username }}</span>
@@ -42,7 +42,10 @@
                     <div class="accordion-body">
                       <ul>
                           {% for taken_book in taken_books %}
-                            <li>{{ taken_book.book.title }}</li>
+                            <li class="card mb-2 px-3 py-2">
+                              <p class="mb-2">{{ taken_book.book.title }}</p>
+                              <small>due return: {{ taken_book.date_to_be_returned|date:'F, d Y' }}</small>
+                            </li>
                           {% endfor %}
                       </ul>
                     </div>

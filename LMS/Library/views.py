@@ -30,6 +30,7 @@ def get_book(request, book_id):
 
 def search(request, query):
     books = Book.objects.all()
-    results = [book for book in books if query in book.title]
+    results = [book for book in books if query.lower() in book.title.lower()]
+    print(results)
     return render(request, 'Library/results.html', {'books': results, 'query': query})
     

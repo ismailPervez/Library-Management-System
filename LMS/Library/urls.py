@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('explore/', views.explore, name='explore-library'),
     path('book/<book_id>', views.get_book, name='full-book'),
+    path('search/<query>', views.search, name='search')
 ]

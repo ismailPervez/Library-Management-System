@@ -222,3 +222,18 @@ svg {
     color: white;
     background-color: rgb(4, 163, 4);
 }
+
+.search-wrapper {
+    width: 35%;
+    background-color: white;
+    height: 30px;
+    border-radius: 4px;
+    padding: 2%;
+}
+
+.search-wrapper input {
+    background-color: transparent;
+    outline: none;
+    flex: 1;
+    border: none;
+}

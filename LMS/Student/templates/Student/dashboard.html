@@ -139,29 +139,35 @@
 
         // remove book from wish list
         let wishlistContainer = document.getElementById('wishlist-container')
-        const removeBtns = document.querySelectorAll('.remove-btn')
 
-        if (removeBtns) {
+        // get remove buttons
+        function init_remove_btns() {
+          let removeBtns = document.querySelectorAll('.remove-btn')
           removeBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              const bookID = parseInt(e.target.parentElement.dataset.bookid)
-              fetch(`/student/remove/wishlist/${bookID}`, {
-                headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
-                method: 'DELETE',
-              })
-                .then(res => res.json())
-                .then(data => {
-                  wishlistContainer.innerHTML = ''
-                  data.wishlist.forEach(obj => {
-                    console.log(obj)
-                    wishlistContainer.innerHTML += `<li class="card px-3 py-2 mb-2" data-bookid="${obj.book.pk}">
-                      <p class="mb-2">${obj.book.title}</p>
-                      <button class="remove-btn btn btn-outline-danger btn-sm w-25">remove</button>
-                    </li>`
-                  })
-                })
-            })
+            btn.addEventListener('click', remove_from_wishlist)
           })
         }
+
+        function remove_from_wishlist(e) {
+          const bookID = parseInt(e.target.parentElement.dataset.bookid)
+          fetch(`/student/remove/wishlist/${bookID}`, {
+            headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
+            method: 'DELETE',
+          })
+            .then(res => res.json())
+            .then(data => {
+              wishlistContainer.innerHTML = ''
+              data.wishlist.forEach(obj => {
+                // console.log(obj)
+                wishlistContainer.innerHTML += `<li class="card px-3 py-2 mb-2" data-bookid="${obj.book.pk}">
+                  <p class="mb-2">${obj.book.title}</p>
+                  <button class="remove-btn btn btn-outline-danger btn-sm w-25">remove</button>
+                </li>`
+                init_remove_btns()
+              })
+            })
+        }
+
+        init_remove_btns()
     </script>
 {% endblock scripts %}

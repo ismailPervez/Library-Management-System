@@ -27,11 +27,7 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'library-home' %}">Home</a>
                 <a href="{% url 'explore-library' %}">Explore</a>
-                {% if user.is_librarian %}
-                    <a href="{% url 'librarian-home' %}">Dashboard</a>
-                {% else %}
-                    <a href="{% url 'student-home' %}">Dashboard</a>
-                {% endif %}
+                <a href="{% url 'student-home' %}">Dashboard</a>
                 <a href="{% url 'logout' %}" class="link-btn">Logout</a>
             {% else %}
                 <a href="#">Home</a>

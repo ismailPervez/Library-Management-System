@@ -19,7 +19,8 @@ def index(request):
     context = {
         'title': 'students dashboard page',
         'taken_books': taken_books,
-        'wishlist': wishlist
+        'wishlist': wishlist,
+        'student_id': student.student_ID
     }
     return render(request, 'Student/dashboard.html', context)
 

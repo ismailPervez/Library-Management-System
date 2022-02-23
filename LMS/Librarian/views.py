@@ -19,7 +19,8 @@ def index(request):
         'title': 'Librarian Home Page',
         'book_count': book_count,
         'out_count': out_count,
-        'in_count': in_count
+        'in_count': in_count,
+        'staff_id': librarian.staff_ID
     }
     return render(request, 'Librarian/dashboard.html', context)
 

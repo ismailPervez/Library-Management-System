@@ -143,7 +143,7 @@ form small {
     border-radius: 5px;
     background-color: var(--light-dark-bg);
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 40% 60%;
 }
 
 .user-profile .avatar {

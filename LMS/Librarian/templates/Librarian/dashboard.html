@@ -90,11 +90,11 @@
                   </h2>
                   <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
-                        <form id="taken-book-form">
+                        <form id="clear-book-form">
                             <h3>Enter Details</h3>
                             <input type="text" class="form-control mb-3" placeholder="book title"/>
                             <input type="text" class="form-control mb-3" placeholder="student ID"/>
-                            <button class="btn-primary" id="taken-book-btn">clear book</button>
+                            <button class="btn-primary" id="clear-book-btn">clear book</button>
                         </form>
                     </div>
                   </div>
@@ -211,6 +211,28 @@
 
             else {
                 alert('all fields are required!')
+            }
+        })
+
+        // clear returned books
+        const clearBookBtn = document.getElementById('clear-book-btn')
+        clearBookBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            const bookTitle = document.querySelector('#clear-book-form input[placeholder="book title"]').value
+            const studentID = document.querySelector('#clear-book-form input[placeholder="student ID"]').value
+
+            if (bookTitle && studentID) {
+                fetch(`/librarian/clear-returned-book`, {
+                    headers: {'Content-Type': 'application/json', 'X-Csrftoken': '{{ csrf_token }}'},
+                    method: 'POST',
+                    body: JSON.stringify({'book_title': bookTitle, 'student_id': studentID})
+                }).then(res => res.json()).then(data => {
+                    alert(data.msg)
+                })
+            }
+
+            else {
+                alert('both fields are required')
             }
         })
     </script>

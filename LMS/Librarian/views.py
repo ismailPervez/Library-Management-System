@@ -33,7 +33,7 @@ def register(request):
     else:
         form = LibrarianRegistrationForm()
 
-    return render(request, 'Student/register.html', {'form': form})
+    return render(request, 'Librarian/register.html', {'form': form})
 
 def log_in(request):
     if request.method == 'POST':

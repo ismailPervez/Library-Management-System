@@ -59,10 +59,6 @@ main {
     margin-top: 70px;
 }
 
-.login-options {
-
-}
-
 .div-btn {
     width: 260px;
     height: 260px;
@@ -314,4 +310,23 @@ section.users {
 .contact-us ul li:hover {
     background-color: var(--maroon);
     color: white;
+}
+
+.form-container#register-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    /* background-color: red; */
+}
+
+.form-container#register-form > div {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    /* background-color: green; */
+}
+
+.form-container#register-form form {
+    width: 100% !important;
+    /* background-color: var(--light-dark-bg); */
 }

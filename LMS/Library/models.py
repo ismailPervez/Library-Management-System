@@ -9,6 +9,7 @@ class BaseUser(AbstractUser):
 from Student.models import Student
 
 class Book(models.Model):
+    serial_number = models.IntegerField()
     title = models.CharField(max_length=150)
     desc = models.TextField(max_length=150)
     in_store = models.IntegerField()

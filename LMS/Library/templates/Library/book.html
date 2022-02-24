@@ -26,16 +26,22 @@
             headers: {'X-Csrftoken': '{{ csrf_token }}'},
             method: 'POST'
         }).then(res => res.json()).then(data => {
-            // addWishlistBtn.remove()
-            document.querySelector('button').remove()
-            btnContainer.innerHTML = (
-                `
-                <button class="btn btn-outline-danger" id="remove-wishlist" onclick="removeFromWishlist()">
-                    remove from wish List
-                </button>
-                `
-            )
-            alert(data.msg)
+            if (data.status_code === 200) {
+                document.querySelector('button').remove()
+                btnContainer.innerHTML = (
+                    `
+                    <button class="btn btn-outline-danger" id="remove-wishlist" onclick="removeFromWishlist()">
+                        remove from wish List
+                    </button>
+                    `
+                )
+                alert(data.msg)
+            }
+            else {
+                alert(data.msg)
+            }
+        }).catch(error => {
+            console.log(error)
         })
     }
 
@@ -45,16 +51,23 @@
             headers: {'X-Csrftoken': '{{ csrf_token }}'},
             method: 'DELETE'
         }).then(res => res.json()).then(data => {
-            // removeFromWishlistBtn.remove()
-            document.querySelector('button').remove()
-            btnContainer.innerHTML = (
-                `
-                <button class="btn-primary" id="add-wishlist" onclick="addToWishlist()">
-                    add to wish List
-                </button>
-                `
-            )
-            alert(data.msg)
+            console.log(data)
+            if (data.status_code === 200) {
+                document.querySelector('button').remove()
+                btnContainer.innerHTML = (
+                    `
+                    <button class="btn-primary" id="add-wishlist" onclick="addToWishlist()">
+                        add to wish List
+                    </button>
+                    `
+                )
+                alert(data.msg)
+            }
+            else {
+                alert(data.msg)
+            }
+        }).catch(error => {
+            console.log(error)
         })
     }
 

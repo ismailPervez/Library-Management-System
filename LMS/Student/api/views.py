@@ -30,14 +30,13 @@ def add_to_wishlist(request, book_id):
         book = Book.objects.get(pk=book_id)
 
         if book is None:
-            return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'msg': 'book not found', 'status_code': 404}, status=status.HTTP_404_NOT_FOUND)
 
         else:
-            if not request.user:
-                return Response({'msg': 'you need to be logged in'}, status=status.HTTP_401_UNAUTHORIZED)
+            if not request.user.is_authenticated:
+                return Response({'msg': 'you need to be logged in', 'status_code': 401}, status=status.HTTP_401_UNAUTHORIZED)
 
             else:
-                print(type(request.user))
                 student = Student.objects.filter(username=request.user.username).first()
                 print(student)
                 if student:
@@ -51,7 +50,7 @@ def add_to_wishlist(request, book_id):
                 else:
                     return Response({'msg': 'not a valid user'}, status=status.HTTP_401_UNAUTHORIZED)
 
-                return Response({'msg': 'book added to wishlist!'}, status=status.HTTP_200_OK)
+                return Response({'msg': 'book added to wishlist!', 'status_code': 200}, status=status.HTTP_200_OK)
 
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -65,7 +64,7 @@ def remove_wishlist(request, book_id):
             return Response({'msg': 'book not found'}, status=status.HTTP_404_NOT_FOUND)
 
         else:
-            if not request.user:
+            if not request.user.is_authenticated:
                 return Response({'msg': 'you need to be logged in'}, status=status.HTTP_401_UNAUTHORIZED)
 
             else:
@@ -80,7 +79,7 @@ def remove_wishlist(request, book_id):
                 else:
                     return Response({'msg': 'not a valid user'}, status=status.HTTP_401_UNAUTHORIZED)
 
-                return Response({'msg': 'book removed from wishlist!', 'wishlist': JSON_wishlist.data}, status=status.HTTP_200_OK)
+                return Response({'msg': 'book removed from wishlist!', 'wishlist': JSON_wishlist.data, 'status_code': 200}, status=status.HTTP_200_OK)
     
     else:
         return Response({'msg': 'method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

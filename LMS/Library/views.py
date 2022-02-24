@@ -18,7 +18,7 @@ def get_book(request, book_id):
     book = Book.objects.get(pk=book_id)
 
     if book:
-        if request.user:
+        if request.user.is_authenticated:
             in_wishlist = WishList.objects.filter(book=book, student=request.user).first()
             if in_wishlist is not None:
                 return render(request, 'Library/book.html', {'book': book, 'in_wishlist': True})

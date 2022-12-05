@@ -38,14 +38,14 @@ a {
     padding: 1% 2%;
     border-radius: 3px;
     transition: .5s;
-    background-color: var(--hovered-link-bg);
+    background-color: var(--maroon) !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 7px 10px;
     background-color: var(--btn-bg);
     color: white;
 }
 
 a:hover {
-    background-color: var(--hovered-link-bg);
+    background-color: #c90c5175;
     color: var(--font-color);
 }
 
@@ -95,7 +95,7 @@ main {
 
 .form-container {
     display: grid;
-    grid-template-columns: 45% 65%;
+    grid-template-columns: 45% 95%;
     height: 450px;
 }
 
@@ -214,8 +214,8 @@ svg {
 }
 
 .simple-analytics > div {
-    border-top: 2px solid rgb(0, 89, 255);
-    background-color: #CCE5FF;
+    border-top: 2px solid var(--maroon);
+    background-color: #c90c515d;
 }
 
 #new-book-form textarea {
@@ -224,7 +224,7 @@ svg {
 }
 
 .search-bar-container {
-    background-image: url('https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+    background-image: url('https://images.pexels.com/photos/1034008/pexels-photo-1034008.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     /* filter: blur(8px);
     -webkit-filter: blur(8px); */
     background-position: center;

@@ -2,45 +2,44 @@ from django.forms import CharField, EmailInput, ModelForm, PasswordInput, TextIn
 from .models import Student
 
 class StudentRegistrationForm(ModelForm):
-
     username = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g john_doe',
         'required': True
     }))
 
     first_name = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g John',
         'required': True
     }))
 
     last_name = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g Doe',
         'required': True
     }))
 
     student_ID = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g 1673827',
         'required': True
     }))
 
     email = CharField(widget=EmailInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g johndoe@gmail.com',
         'required': True
     }))
 
     password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'enter a strong password',
         'required': True
     }))
 
     confirm_password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'confirm your password',
         'label': 'confirm password',
         'required': True
@@ -70,13 +69,13 @@ class StudentRegistrationForm(ModelForm):
 
 class StudentLoginForm(Form):
     email = CharField(widget=EmailInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'e.g johndoe@gmail.com',
         'required': True
     }))
 
     password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none mb-2',
         'placeholder': 'enter a strong password',
         'required': True
     }))

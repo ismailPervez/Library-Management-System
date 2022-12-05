@@ -3,43 +3,43 @@ from .models import Librarian
 
 class LibrarianRegistrationForm(ModelForm):  
     username = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g john_doe',
         'required': True
     }))
 
     first_name = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g John',
         'required': True
     }))
 
     last_name = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g Doe',
         'required': True
     }))
 
     staff_ID = CharField(widget=TextInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g 1673827',
         'required': True
     }))
 
     email = CharField(widget=EmailInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g johndoe@gmail.com',
         'required': True
     }))
 
     password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'enter a strong password',
         'required': True
     }))
 
     confirm_password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'confirm your password',
         'label': 'confirm password',
         'required': True
@@ -69,13 +69,13 @@ class LibrarianRegistrationForm(ModelForm):
 
 class LibrarianLoginForm(Form):
     email = CharField(widget=EmailInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'e.g johndoe@gmail.com',
         'required': True
     }))
 
     password = CharField(widget=PasswordInput(attrs={
-        'class': 'form-control',
+        'class': 'form-control shadow-none',
         'placeholder': 'enter a strong password',
         'required': True
     }))
